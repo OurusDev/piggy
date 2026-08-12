@@ -4,7 +4,7 @@ Aplicación Flask con PostgreSQL (Neon) y frontend estático. Está preparada pa
 
 ## Archivos importantes
 
-- `api/index.py`: entrada de Vercel.
+- `app.py`: entrada de Vercel.
 - `backend/app.py`: API Flask y servidor del frontend.
 - `frontend/`: interfaz web.
 - `requirements.txt`: dependencias del runtime Python.
@@ -14,7 +14,7 @@ Aplicación Flask con PostgreSQL (Neon) y frontend estático. Está preparada pa
 
 1. Subí todos los archivos de esta carpeta al repositorio, excepto `backend/.env`, `work/` y cualquier secreto. El `.gitignore` ya los excluye.
 2. En Vercel, importá el repositorio o conectalo al proyecto `piggy` existente.
-3. No configures **Build Command** ni **Output Directory**: Vercel detecta `requirements.txt` y `api/index.py` automáticamente.
+3. No configures **Build Command** ni **Output Directory**: Vercel detecta `requirements.txt` y `app.py` automáticamente.
 4. En **Project Settings → Environment Variables**, agregá estas dos variables para Production, Preview y Development:
 
    - `DATABASE_URL`: la cadena de conexión de Neon, incluyendo `sslmode=require`.
