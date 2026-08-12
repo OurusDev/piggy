@@ -445,7 +445,29 @@ def retirar_chanchito(current_user_id, id):
         cur.close()
         conn.close()
 
+# ==================== PRUEBA DE CONEXIÓN ====================
+def test_db_connection():
+    try:
+        conn = get_db_connection()
+        cur = conn.cursor()
+        cur.execute("SELECT version();")
+        db_version = cur.fetchone()
+        print("\n" + "="*50)
+        print("🚀 ¡CONEXIÓN EXITOSA CON LA BASE DE DATOS NEON!")
+        print(f"📦 Versión de Postgres: {db_version[0]}")
+        print("="*50 + "\n")
+        cur.close()
+        conn.close()
+    except Exception as e:
+        print("\n" + "!"*50)
+        print("❌ ERROR DE CONEXIÓN CON LA BASE DE DATOS")
+        print(f"🔍 Detalle: {str(e)}")
+        print("!"*50 + "\n")
 
 # ==================== EXECUTE SERVER ====================
 if __name__ == '__main__':
+    # Probamos la conexión antes de levantar el servidor
+    test_db_connection()
+    
+    # Iniciamos Flask
     app.run(host='0.0.0.0', port=4000, debug=True)
