@@ -1,7 +1,7 @@
 import os
 import jwt
 import datetime
-from flask import Flask, request, jsonify, send_from_directory
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 from werkzeug.security import generate_password_hash, check_password_hash
 from functools import wraps
@@ -14,7 +14,6 @@ load_dotenv()  # <-- 2. INICIALIZAMOS DOTENV
 
 app = Flask(__name__)
 CORS(app)  # Permite conectar con el frontend sin problemas de CORS
-FRONTEND_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'frontend'))
 
 # Configuración basada en el archivo .env
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
@@ -446,15 +445,6 @@ def retirar_chanchito(current_user_id, id):
         cur.close()
         conn.close()
 
-
-@app.route('/', methods=['GET'])
-def serve_frontend():
-    return send_from_directory(FRONTEND_DIR, 'index.html')
-
-
-@app.route('/<path:path>', methods=['GET'])
-def serve_frontend_asset(path):
-    return send_from_directory(FRONTEND_DIR, path)
 
 # ==================== EXECUTE SERVER ====================
 if __name__ == '__main__':
